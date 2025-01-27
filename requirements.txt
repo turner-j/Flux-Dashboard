@@ -6,7 +6,7 @@ dash==2.17.1
 folium==0.19.4
 geopandas==1.0.1
 matplotlib==3.8.4
-numpy==2.2.2
+numpy==1.26
 pandas==2.2.3
 paramiko==3.4.0
 plotly==5.22.0
