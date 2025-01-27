@@ -14,7 +14,12 @@ st.set_page_config(
 
 st.write("Plotting air temp., latent heat flux, and humidity.")
 
-df = getfluxes()
+target_host = st.secrets["target_host"]
+target_port = st.secrets["target_port"]
+un  = st.secrets["un"]
+pwd = st.secrets["pwd"]
+
+df = getfluxes(target_host,target_port,un,pwd)
 
 # Converting time zone from UTC to local
 df['TIMESTAMP_END'] = df['TIMESTAMP_END']-pd.Timedelta(6,unit='h')

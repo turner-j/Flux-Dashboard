@@ -18,7 +18,12 @@ st.write(
     """Display a windrose of hourly data from the last 30 days."""
 )
 
-df = getfluxes()
+target_host = st.secrets["target_host"]
+target_port = st.secrets["target_port"]
+un  = st.secrets["un"]
+pwd = st.secrets["pwd"]
+
+df = getfluxes(target_host,target_port,un,pwd)
 
 df  = df[["daytime","TIMESTAMP_END", "co2_flux","wind_speed","wind_dir"]]
 

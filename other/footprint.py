@@ -5,7 +5,12 @@ st.set_page_config(
     page_title="Flux Footprint",
     page_icon=":footprints:")
 
-df = getfluxes()
+target_host = st.secrets["target_host"]
+target_port = st.secrets["target_port"]
+un  = st.secrets["un"]
+pwd = st.secrets["pwd"]
+
+df = getfluxes(target_host,target_port,un,pwd)
 
 footprintdf = df[["L","(z-d)/L","wind_speed","wind_dir","v_unrot","u*"]].copy()
 # Renaming column by index
