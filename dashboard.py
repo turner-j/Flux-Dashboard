@@ -1,5 +1,4 @@
 import streamlit as st
-from st_pages import Page, show_pages, add_page_title
 import sys
 import calc_footprint_FFP3 as myfootprint
 from loadingfluxdata import getfluxes
@@ -12,28 +11,12 @@ sys.path.append(r'\FFP_Python')
 
 st.set_page_config(
     page_title="Flux Tower Dashboard",
-    page_icon=":large_green_circle:",
-)
+    page_icon=":large_green_circle:")
 
 st.write("# :rainbow[Welcome to the Atchafalaya Delta Flux Tower Dashboard]")
 
-st.markdown(
-    """
+st.markdown("""
     **👈 Select a plot type from the sidebar** to plot real-time data from US-Atf.""")
-
-# Specify what pages should be shown in the sidebar, and what their titles 
-# and icons should be
-show_pages(
-    [
-        Page("dashboard.py", "Home", ":house:"),
-        Page("plottingwindrose.py", "Windrose", ":rose:"),
-        Page("plottingtimeseries.py", "Time Series", ":alarm_clock:"),
-        Page("footprint.py", "Flux Footprint", ":footprints:"),
-        Page("weather.py", "Weather", ":sun_with_face:")
-    ]
-)
-
-st.experimental_rerun()
 
 df = getfluxes()
 
