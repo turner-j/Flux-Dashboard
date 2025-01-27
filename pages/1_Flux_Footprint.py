@@ -554,11 +554,11 @@ if test.empty:
 		FFP(central_lat=29.509019,central_lon=-91.440917,zm=20., z0=0.1, h=2000., ol=-100., sigmav=0.6,
 		ustar=0.4, wind_dir=30,rs= [20., 40., 60., 80.],crop=False,fig = 1,show_heatmap=False)
 	else:
-		FFP(central_lat=29.509019,central_lon=-91.440917,zm=test['zm'], z0=0.1,
+		FFP(central_lat=29.509019,central_lon=-91.440917,zm=test['zm'], z0=None,
 		umean=test['wind_speed'], h=2000., ol=test['L'], sigmav=test['v_unrot'],
 		ustar=test['u*'], wind_dir=test['wind_dir'],rs= [20., 40., 60., 80.],crop=False,fig = 1,show_heatmap=False)
 else:
-	FFP(central_lat=29.509019,central_lon=-91.440917,zm=test['zm'], z0=0.1,
+	FFP(central_lat=29.509019,central_lon=-91.440917,zm=test['zm'], z0=None,
 	umean=test['wind_speed'], h=2000., ol=test['L'], sigmav=test['v_unrot'],
 	ustar=test['u*'], wind_dir=test['wind_dir'],rs= [20., 40., 60., 80.],crop=False,fig = 1,show_heatmap=False)
 
