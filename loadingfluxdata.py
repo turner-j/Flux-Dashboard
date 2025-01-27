@@ -12,20 +12,10 @@ import numpy as np
 import ipaddress
 import streamlit as st
 
-target_host = st.secrets["target_host"]
-target_port = st.secrets["target_port"]
-un  = st.secrets["un"]
-pwd = st.secrets["pwd"]
-	
-def getfluxes():
+def getfluxes(target_host,target_port,un,pwd):
 	ssh = paramiko.SSHClient()
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-	target_host = target_host
-	target_port = target_port
-	un = un
-	pwd = pwd
-	
 	ssh_client = paramiko.SSHClient()
 	ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 	ssh_client.connect(hostname = target_host , username = un, password = pwd, port = target_port)

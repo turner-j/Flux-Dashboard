@@ -17,11 +17,15 @@ st.write("# :rainbow[Welcome to the Atchafalaya Delta Flux Tower Dashboard]")
 st.markdown("""
     **👈 Select a plot type from the sidebar** to plot real-time data from US-Atf.""")
 
-df = getfluxes()
+target_host = st.secrets["target_host"]
+target_port = st.secrets["target_port"]
+un  = st.secrets["un"]
+pwd = st.secrets["pwd"]
+
+df = getfluxes(target_host,target_port,un,pwd)
 
 # drop columns with all NaN's
 df.dropna(axis=1, how='all',inplace= True)
-
 
 # Function to plot ridge map
 def plot_ridge_map(bbox, num_lines, lake_flatness, water_ntile, vertical_ratio, linewidth, colormap, map_name):
