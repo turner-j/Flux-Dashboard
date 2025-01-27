@@ -6,7 +6,6 @@ from streamlit_folium import st_folium
 from ridge_map import RidgeMap
 import matplotlib.pyplot as plt
 from geopandas.tools import geocode
-sys.path.append(r'\FFP_Python')
 
 st.set_page_config(
     page_title="Flux Tower Dashboard",
