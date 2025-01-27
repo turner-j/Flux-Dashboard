@@ -33,6 +33,8 @@ show_pages(
     ]
 )
 
+st.experimental_rerun()
+
 df = getfluxes()
 
 # drop columns with all NaN's
