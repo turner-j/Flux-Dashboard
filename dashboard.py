@@ -1,6 +1,5 @@
 import streamlit as st
 import sys
-import calc_footprint_FFP3 as myfootprint
 from loadingfluxdata import getfluxes
 import folium
 from streamlit_folium import st_folium
