@@ -12,10 +12,10 @@ import numpy as np
 import ipaddress
 import streamlit as st
 
-os.environ["target_host"] == st.secrets["target_host"]
-os.environ["target_port"] == st.secrets["target_port"]
-os.environ["un"] == st.secrets["un"]
-os.environ["pwd"] == st.secrets["pwd"]
+target_host = st.secrets["target_host"]
+target_port = st.secrets["target_port"]
+un  = st.secrets["un"]
+pwd = st.secrets["pwd"]
 	
 def getfluxes():
 	ssh = paramiko.SSHClient()
