@@ -15,11 +15,6 @@ st.write("# :rainbow[Welcome to the Atchafalaya Delta Flux Tower Dashboard]")
 st.markdown("""
     **👈 Select a plot type from the sidebar** to plot real-time data from US-Atf.""")
 
-target_host = st.secrets["target_host"]
-target_port = st.secrets["target_port"]
-un  = st.secrets["un"]
-pwd = st.secrets["pwd"]
-
 # Function to plot ridge map
 def plot_ridge_map(bbox, num_lines, lake_flatness, water_ntile, vertical_ratio, linewidth, colormap, map_name):
     rm = RidgeMap(bbox)
@@ -55,5 +50,3 @@ st.markdown(
 )
 
 st.write("View source code for [Streamlit Ridge Map](https://github.com/deepcharts/Ridge-Map-Streamlit/tree/main).")
-
-st.dataframe(df)
