@@ -105,7 +105,7 @@ import plotly.express as px
 st.write('Select time to display:')
 day = st.checkbox('daytime')
 night = st.checkbox('nighttime')
-df.rename(columns={'co2_flux': 'CO2 (\u03bcmolm$^{-2}s^{-1}$)' , inplace=True)
+df.rename(columns={'co2_flux': 'CO2 (\u03bcmolm$^{-2}s^{-1}$)'}, inplace=True)
 
 if day and not night:
     st.write("You selected daytime.")
