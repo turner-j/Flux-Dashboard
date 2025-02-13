@@ -113,32 +113,32 @@ st.write(
     """Choose a gas and averaging frequency to display. Bar color corresponds to standard deviation."""
 )
 
-df.rename(columns={'co2_flux': 'CO2 (\u03bcmolm$^{-2}s^{-1}$)' , 'ch4_flux': 'CH4 (\u03bcmolm$^{-2}s^{-1}$)'}, inplace=True)
+df.rename(columns={'co2_flux': 'CO2 (\u03bcmol/m2/s)' , 'ch4_flux': 'CH4 (\u03bcmol/m2/s)'}, inplace=True)
 
 if timestepfreq == "Hourly" and var == "CO2":
 	st.write("Displaying hourly means of CO2.")
 	hh_df = df.groupby([df['TIMESTAMP_END'].dt.hour,df['TIMESTAMP_END'].dt.minute]).mean()
 	hh_df['hour'] = hh_df['TIMESTAMP_END'].dt.hour
-	hh_df['deviation'] = hh_df['CO2 (\u03bcmolm$^{-2}s^{-1}$)'] - hh_df['CO2 (\u03bcmolm$^{-2}s^{-1}$)'].mean()
-	st.bar_chart(hh_df, x="times", y="CO2 (\u03bcmolm$^{-2}s^{-1}$)", color="deviation")
+	hh_df['deviation'] = hh_df['CO2 (\u03bcmol/m2/s)'] - hh_df['CO2 (\u03bcmol/m2/s)'].mean()
+	st.bar_chart(hh_df, x="times", y="CO2 (\u03bcmol/m2/s)", color="deviation")
 	
 elif timestepfreq == "Daily" and var == "CO2":
 	st.write("Displaying daily means of CO2.")
 	dd_df = df.groupby([df['TIMESTAMP_END'].dt.date]).mean()
 	dd_df['date'] = dd_df['TIMESTAMP_END'].dt.date
-	dd_df['deviation'] = dd_df['CO2 (\u03bcmolm$^{-2}s^{-1}$)'] - dd_df['CO2 (\u03bcmolm$^{-2}s^{-1}$)'].mean()
-	st.bar_chart(dd_df, x="date", y="CO2 (\u03bcmolm$^{-2}s^{-1}$)", color="deviation")
+	dd_df['deviation'] = dd_df['CO2 (\u03bcmol/m2/s)'] - dd_df['CO2 (\u03bcmol/m2/s)'].mean()
+	st.bar_chart(dd_df, x="date", y="CO2 (\u03bcmol/m2/s)", color="deviation")
 
 elif timestepfreq == "Hourly" and var == "CH4":
 	st.write("Displaying hourly means of CH4.")
 	hh_df = df.groupby([df['TIMESTAMP_END'].dt.hour,df['TIMESTAMP_END'].dt.minute]).mean()
 	hh_df['hour'] = hh_df['TIMESTAMP_END'].dt.hour
-	hh_df['deviation'] = hh_df['CH4 (\u03bcmolm$^{-2}s^{-1}$)'] - hh_df['CH4 (\u03bcmolm$^{-2}s^{-1}$)'].mean()
-	st.bar_chart(hh_df, x="times", y="CH4 (\u03bcmolm$^{-2}s^{-1}$)", color="deviation")
+	hh_df['deviation'] = hh_df['CH4 (\u03bcmol/m2/s)'] - hh_df['CH4 (\u03bcmol/m2/s)'].mean()
+	st.bar_chart(hh_df, x="times", y="CH4 (\u03bcmol/m2/s)", color="deviation")
 	
 else:
 	st.write("Displaying daily means of CH4.")
 	dd_df = df.groupby([df['TIMESTAMP_END'].dt.date]).mean()
 	dd_df['date'] = dd_df['TIMESTAMP_END'].dt.date
-	dd_df['deviation'] = dd_df['CH4 (\u03bcmolm$^{-2}s^{-1}$)'] - dd_df['CH4 (\u03bcmolm$^{-2}s^{-1}$)'].mean()
-	st.bar_chart(dd_df, x="date", y="CH4 (\u03bcmolm$^{-2}s^{-1}$)", color="deviation")
+	dd_df['deviation'] = dd_df['CH4 (\u03bcmol/m2/s)'] - dd_df['CH4 (\u03bcmol/m2/s)'].mean()
+	st.bar_chart(dd_df, x="date", y="CH4 (\u03bcmol/m2/s)", color="deviation")
