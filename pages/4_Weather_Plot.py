@@ -22,7 +22,7 @@ st.set_page_config(
     page_title="Weather",
     page_icon=":sun_with_face:")
 
-st.write("Plotting air temp., latent heat flux, and humidity.")
+st.write("Plotting meteorological variables.")
 
 target_host = st.secrets["target_host"]
 target_port = st.secrets["target_port"]
@@ -90,21 +90,27 @@ df = getfluxes(target_host,target_port,un,pwd)
 
 # Converting time zone from UTC to local
 df['TIMESTAMP_END'] = df['TIMESTAMP_END']-pd.Timedelta(6,unit='h')
-
-dd_df = df.groupby([df['TIMESTAMP_END'].dt.date]).mean()
-dd_df['date'] = dd_df['TIMESTAMP_END'].dt.date
-
-dd_df['TA'] = dd_df['TA_1_1_1'].fillna(dd_df['air_temperature'])
-dd_df['TA'] = dd_df['TA']-273.15
-
-dd_df = dd_df[["date","TA","LE","RH"]]
+df['TA_1_1_1'] = df['TA_1_1_1'].fillna(df['air_temperature'])
 
 # Renaming columns
-dd_df.rename(columns={'TA': 'air temp (C)', 'LE': 'latent heat flux', 'RH': 'RH (%)'}, inplace=True)
+df.rename(columns={'TIMESTAMP_END': 'date'}, inplace=True)
+df.rename(columns={'SHF_2_1_1': 'Soil heat flux (W/m2)' , 'TS_6_1_1': 'Soil temperature',
+'TA_1_1_1':'Air temperature','PPFD_1_1_1':'PPFD (umol/m2/s)','ALB_1_1_1':'Albedo (%)','P_RAIN_1_1_1':'Precipitation (meters)'}, inplace=True)
 
-st.scatter_chart(
-    dd_df,
-    x="date",
-    y="air temp (C)",
-    color="latent heat flux",
-    size="RH (%)")
+# Converting units
+df['Air temperature (Celsius)'] = df['Air temperature'] -273.15
+df['Soil temperature (Celsius)'] = df['Soil temperature'] -273.15
+df['Precipitation (cm)'] = df['Precipitation (meters)'] * 100
+
+# Show options
+option = st.selectbox(
+    "Select variable to plot:",
+    ("Air temperature (Celsius)", "Precipitation (cm)", "Soil temperature (Celsius)","Soil heat flux (W/m2)","PPFD (umol/m2/s)","Albedo (%)")
+)
+
+# Plotting bar chart or scatterplot
+if option == "Precipitation (cm)":
+	dd_df = df.groupby([df['date'].dt.date])['Precipitation (cm)'].sum().reset_index()
+	st.bar_chart(dd_df, x="date", y="Precipitation (cm)")
+else:
+	st.scatter_chart(df, x="date", y=option)
