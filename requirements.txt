@@ -13,7 +13,7 @@ plotly==5.22.0
 pyproj==3.6.1
 pysftp==0.2.9
 ridge_map==0.0.6
-scikit_learn==1.6.1
+scikit-learn
 scipy==1.15.1
 streamlit==1.36.0
 streamlit_folium==0.24.0
