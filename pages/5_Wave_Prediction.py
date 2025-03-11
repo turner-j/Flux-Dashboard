@@ -107,13 +107,10 @@ high_speed_threshold = 2.3778
 	
 if speed > high_speed_threshold and direction =='S':
 	st.write("Average wind speed yesterday was high and northerly. Using the high winds model.")
-	with open('highcoefs.pkl','rb') as bunch:
-		coef = pickle.load(bunch)
-
+	coef = pickle.load(open('highcoefs.pkl','rb'))
 else:
 	st.write("Average wind speed yesterday was not high and northerly. Using the low winds model.")
-	with open('lowcoefs.pkl', 'rb') as bunch:
-		coef = pickle.load(bunch)
+	coef = pickle.load(open('lowcoefs.pkl','rb'))
 		
 # Get the current date and time, with buffer
 current_time = datetime.now()
